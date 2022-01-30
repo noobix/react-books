@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Show from './components/displaybooks'
+import Form from './components/form'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state={
+      books: [
+        {title:"Money Galore", author:"Amu Djoleto", description:"Novel"},
+        {title:"Things Fall apart", author:"Chnie Achebie", description:"Novel"},
+      ]
+    };
+  }
+  addBook = (newBook) =>{
+    this.setState({books: [...this.state.books, newBook]})
+  }
+  render(){
+    return(<React.Fragment>
+      <div className="container">
+      <div className="row">
+      <div className="col-sm-6 col-lg-4">
+      <img src="pexels-cottonbro-4861373.jpg" alt="..." class="img-fluid"/>
+      </div>
+      <div className="col-sm-6 col-lg-4">
+      <Show books= {this.state.books} />
+      <Form addBook= {this.addBook}/>
+      </div>
+      </div>
+      </div>
+    </React.Fragment>)
+  }
 }
 
 export default App;
